@@ -4,12 +4,10 @@
 // The sub-array a[0 .. i - 1] is sorted
 
 function selectionSort(a) {
-    // # 1
     for (var i = 0; i < a.length - 1; i++) {
         var minIndex;
         var minValue = Infinity;
         
-        // #2
         for (var ii = i; ii < a.length; ii++) {
             if (minValue > a[ii]) {
                 minIndex = ii;
