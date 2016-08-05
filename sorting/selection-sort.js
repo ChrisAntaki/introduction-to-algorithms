@@ -3,22 +3,32 @@
 // Loop invariant:
 // The sub-array a[0 .. i - 1] is sorted
 
-function insertionSort(a) {
-    for (var i = 1; i < a.length; i++) {
-        var value = a[i];
+function selectionSort(a) {
+    // # 1
+    for (var i = 0; i < a.length - 1; i++) {
+        var minIndex;
+        var minValue = Infinity;
         
-        var ii = i - 1;
-        while(ii >= 0 && a[ii] > value) {
-            a[ii + 1] = a[ii];
-            ii = ii - 1;
+        // #2
+        for (var ii = i; ii < a.length; ii++) {
+            if (minValue > a[ii]) {
+                minIndex = ii;
+                minValue = a[ii];
+            }
         }
 
-        a[ii + 1] = value;
+        if (i == minIndex) {
+            continue;
+        }
+
+        var value = a[i];
+        a[i] = minValue;
+        a[minIndex] = value;
     }
     return a;
 }
 
-module.export = insertionSort;
+module.export = selectionSort;
 
 // Tests
 if (!module.parent) {
