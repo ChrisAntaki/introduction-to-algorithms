@@ -1,11 +1,11 @@
 // Algorithm
 
 function mergeSort(a, start, end) {
-    if (start === void 0) {
+    if (start === undefined) {
         start = 0;
     }
 
-    if (end === void 0) {
+    if (end === undefined) {
         end = a.length - 1;
     }
 
