@@ -3,19 +3,18 @@
 // Loop invariant:
 // The sub-array a[0 .. i - 1] is sorted
 
-function insertionSort(a) {
-    for (var i = 1; i < a.length; i++) {
-        var value = a[i];
+function insertionSort(list) {
+    for (var i = 1; i < list.length; i++) {
+        var value = list[i];
         
-        var ii = i - 1;
-        while(ii >= 0 && a[ii] > value) {
-            a[ii + 1] = a[ii];
-            ii = ii - 1;
+        for (var j = i - 1; j >= 0 && value < list[j]; j--) {
+            list[j + 1] = list[j];
         }
-
-        a[ii + 1] = value;
+        
+        list[j + 1] = value;
     }
-    return a;
+    
+    return list;
 }
 
 module.export = insertionSort;
