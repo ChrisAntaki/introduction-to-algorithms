@@ -40,30 +40,33 @@ function levenshteinDistance(
     return value;
 }
 
-function compare(stringA, stringB) {
-    var response = levenshteinDistance(
-        stringA, stringA.length,
-        stringB, stringB.length
+// Tests
+if (!module.parent) {
+    function compare(stringA, stringB) {
+        var response = levenshteinDistance(
+            stringA, stringA.length,
+            stringB, stringB.length
+        );
+        console.log(response);
+    }
+
+    compare(
+        'Hey',
+        'Hay'
     );
-    console.log(response);
+
+    compare(
+        'Hello there',
+        'Hallo sire'
+    );
+
+    compare(
+        'Hello there, good sire, I am inquiring about your breads',
+        'Hallo sire, I am inquiring about your stereo collection'
+    );
+
+    compare(
+        'You know I am all about that levenshtein cache, dawg!',
+        'You knew I was all about that levenshtein cache, cat.'
+    );
 }
-
-compare(
-    'Hey',
-    'Hay'
-);
-
-compare(
-    'Hello there',
-    'Hallo sire'
-);
-
-compare(
-    'Hello there, good sire, I am inquiring about your breads',
-    'Hallo sire, I am inquiring about your stereo collection'
-);
-
-compare(
-    'You know I am all about that levenshtein cache, dawg!',
-    'You knew I was all about that levenshtein cache, cat.'
-);
