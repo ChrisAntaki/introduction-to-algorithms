@@ -33,6 +33,23 @@ BinaryTreeNode.prototype.getLargestDescendant = function() {
     }
 };
 
+BinaryTreeNode.prototype.getNextInOrder = function() {
+    if (this.right) {
+        return this.right.getSmallestDescendant();
+    }
+
+    var node = this;
+    while (node.parent) {
+        node = node.parent;
+
+        if (this.data < node.data) {
+            return node;
+        }
+    }
+
+    return null;
+};
+
 BinaryTreeNode.prototype.traverseInOrder = function() {
     if (this.left) {
         this.left.traverseInOrder();
@@ -51,6 +68,22 @@ BinaryTreeNode.prototype.getRoot = function() {
     } else {
         return this;
     }
+};
+
+BinaryTreeNode.prototype.summarize = function() {
+    var message = '\t' + this.data + '\n';
+    if (this.left) {
+        message += this.left.data;
+    } else {
+        message += 'NULL';
+    }
+    message += '\t\t';
+    if (this.right) {
+        message += this.right.data;
+    } else {
+        message += 'NULL';
+    }
+    console.log(message);
 };
 
 BinaryTreeNode.prototype.delete = function(data) {
@@ -121,5 +154,25 @@ if (!module.parent) {
 
     tree.delete('X-Ray');
 
+    console.log('Traverse in Order:');
+    console.log('---');
     tree.traverseInOrder();
+    console.log('---\n\n');
+    console.log('Root element:');
+    console.log('---');
+    tree.summarize();
+    console.log('---\n\n');
+    console.log('Get Next in Order:');
+    console.log('---');
+    tree.getNextInOrder().summarize();
+    console.log('---\n\n');
+    console.log('Moving to the left of root element:');
+    console.log('---');
+    tree = tree.left;
+    tree.summarize();
+    console.log('---\n\n');
+    console.log('Get Next in Order:');
+    console.log('---');
+    tree.getNextInOrder().summarize();
+    console.log('---\n\n');
 }
