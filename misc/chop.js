@@ -1,15 +1,15 @@
 function chop(target, list) {
     var start = 0;
-    var end = list.length;
+    var end = list.length - 1;
 
     for (;;) {
         // Base
-        if (end - start < 1) {
+        if (start > end) {
             return -1;
         }
 
         // Middle
-        var middle = Math.floor((start + end - 1) / 2);
+        var middle = Math.floor((start + end) / 2);
         var value = list[middle];
         
         // Match
@@ -19,7 +19,7 @@ function chop(target, list) {
 
         // Narrow
         if (target < value) {
-            end = middle;
+            end = middle - 1;
         } else {
             start = middle + 1;
         }
@@ -57,6 +57,14 @@ function test() {
     assert(-1, chop(4, [1, 3, 5, 7]))
     assert(-1, chop(6, [1, 3, 5, 7]))
     assert(-1, chop(8, [1, 3, 5, 7]))
+
+    assert(-1, chop(8, [1, 3, 5, 7, 9]))
+    assert(-1, chop(8, [1, 3, 5, 7, 9, 12]))
+    assert(-1, chop(8, [1, 3, 5, 7, 9, 12, 15]))
+
+    assert(2, chop(5, [1, 3, 5, 7, 9]))
+    assert(2, chop(5, [1, 3, 5, 7, 9, 12]))
+    assert(2, chop(5, [1, 3, 5, 7, 9, 12, 15]))
 }
 
 test();
