@@ -2,28 +2,31 @@ class MinHeap {
     constructor() {
         this.nodes = [];
     }
-    
+
+    swap(a, b) {
+        var data = this.nodes[a];
+        this.nodes[a] = this.nodes[b];
+        this.nodes[b] = data;
+    }
+
     add(data) {
+        // Insert
         var current = this.nodes.length;
         this.nodes[current] = data;
+
+        // Sort
         while (current > 0) {
             var isLeft = current % 2 === 1;
-            var parent;
-            if (isLeft) {
-                parent = (current - 1) / 2;
-            } else {
-                parent = (current - 2) / 2;
-            }
+            var offset = isLeft ? 1 : 2;
+            var parent = (current - offset) / 2;
             if (this.nodes[parent].key < this.nodes[current].key) {
                 break;
             }
-            var temp = this.nodes[parent];
-            this.nodes[parent] = this.nodes[current];
-            this.nodes[current] = temp;
+            this.swap(parent, current);
             current = parent;
         }
     }
-    
+
     pop() {
         var current = 0;
         var newData = this.nodes.pop();
@@ -63,18 +66,20 @@ class MinHeap {
             break;
         }
     }
-    
+
     extract() {
         var node = this.min();
         this.pop();
         return node;
     }
-    
+
     min() {
         return this.nodes[0];
     }
-    
+
     size() {
         return this.nodes.length;
     }
 }
+
+module.exports = MinHeap;
