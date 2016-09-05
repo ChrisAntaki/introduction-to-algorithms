@@ -1,7 +1,7 @@
 class Queue {
     constructor() {
         this.list = [];
-        this.index = 0;
+        this.pointer = 0;
     }
 
     enqueue(value) {
@@ -9,21 +9,25 @@ class Queue {
     }
 
     dequeue() {
-        var value = this.list[this.index++];
-        if (this.index * 2 > this.list.length) {
-            console.log('Optimize, optimize');
-            this.list = this.list.slice(this.index);
-            this.index = 0;
-        }
+        var value = this.list[this.pointer];
+        this.pointer++;
+        this.optimize();
         return value;
     }
 
+    optimize() {
+        if (this.list.length > 0 && this.pointer * 2 > this.list.length) {
+            this.list = this.list.slice(this.pointer);
+            this.pointer = 0;
+        }
+    }
+
     size() {
-        return this.list.length - this.index;
+        return this.list.length - this.pointer;
     }
 
     peek() {
-        return this.list[this.index];
+        return this.list[this.pointer];
     }
 }
 
