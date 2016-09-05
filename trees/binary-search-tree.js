@@ -6,7 +6,7 @@ function BinaryTreeNode(data, parent) {
 }
 
 BinaryTreeNode.prototype.insert = function(data) {
-    var direction = (data < this.data) ? 'left' : 'right';
+    var direction = (data <= this.data) ? 'left' : 'right';
     if (this[direction]) {
         // Recurse
         return this[direction].insert(data);
