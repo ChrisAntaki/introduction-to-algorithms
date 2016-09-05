@@ -28,42 +28,30 @@ class MinHeap {
     }
 
     pop() {
-        var current = 0;
-        var newData = this.nodes.pop();
-        if (current === this.nodes.length) {
+        var data = this.nodes.pop();
+        if (this.nodes.length === 0) {
             return;
         }
-        this.nodes[current] = newData;
-        while (true) {
-            var left = current * 2 + 1;
-            var right = left + 1;
-            if (
-                (
-                    this.nodes[left]
-                    &&
-                    this.nodes[current].key > this.nodes[left].key
-                )
-                ||
-                (
-                    this.nodes[right]
-                    &&
-                    this.nodes[current].key > this.nodes[right].key
-                )
-            ) {
-                var target;
 
-                if (this.nodes[right] === undefined || this.nodes[left].key < this.nodes[right].key) {
-                    target = left;
-                } else {
-                    target = right;
-                }
-                var temp = this.nodes[current];
-                this.nodes[current] = this.nodes[target];
-                this.nodes[target] = temp;
-                current = target;
-                continue;
+        var parent = 0;
+        this.nodes[parent] = data;
+        while (true) {
+            var left = (parent * 2) + 1;
+            var right = left + 1;
+            var min;
+            if (left < this.nodes.length && this.nodes[left].key < this.nodes[parent].key) {
+                min = left;
+            } else {
+                min = parent;
             }
-            break;
+            if (right < this.nodes.length && this.nodes[right].key < this.nodes[min].key) {
+                min = right;
+            }
+            if (min === parent) {
+                break;
+            }
+            this.swap(parent, min);
+            parent = min;
         }
     }
 

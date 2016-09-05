@@ -8,6 +8,17 @@ heap.add({key: 2, value: 'Hay'});
 heap.add({key: 4, value: 'Hay'});
 heap.add({key: 3, value: 'Hay'});
 heap.add({key: 9, value: 'Hay'});
-
+heap.add({key: 23, value: 'Hay'});
+heap.add({key: 18, value: 'Hay'});
+heap.add({key: 11, value: 'Hay'});
+heap.add({key: 90, value: 'Hay'});
 console.log(heap);
-console.log(heap.min());
+
+heap.pop();
+console.log(heap);
+heap.pop();
+console.log(heap);
+heap.pop();
+console.log(heap);
+heap.pop();
+console.log(heap);
