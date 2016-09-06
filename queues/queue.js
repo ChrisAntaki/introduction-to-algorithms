@@ -9,6 +9,7 @@ class Queue {
     }
 
     dequeue() {
+        if (this.list.length === 0) return;
         var value = this.list[this.pointer++];
         this.optimize();
         return value;
