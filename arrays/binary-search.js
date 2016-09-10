@@ -1,4 +1,8 @@
 function binarySearch(list, target) {
+    if (!list) {
+        return -1;
+    }
+
     var left = 0;
     var right = list.length - 1;
 
